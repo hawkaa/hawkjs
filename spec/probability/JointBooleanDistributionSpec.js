@@ -150,18 +150,18 @@ define([
 
 	describe('probability', function() {
 		it('should return the correct probability', function() {
-			expect(this.jsd.probabilityOf('deposed', true).value).toEqual(0.48);
-			expect(this.jsd2.probabilityOf('charismatic', true).value).toEqual(0.5);
+			expect(this.jsd.probabilityOf('deposed', true)).toEqual(0.48);
+			expect(this.jsd2.probabilityOf('charismatic', true)).toEqual(0.5);
 		})
 	});
 
 	describe('conditional probability', function() {
 		it('should calculate the correct conditional probability', function() {
 			var p = this.jsd2.probabilityOf('deposed', true);
-			expect(p.value).toEqual(0.48);
-			expect(p.given('tyrannical', true).value).toEqual(0.48);
-			expect(p.given('charismatic', true, 'tyrannical', true).value).toEqual(0.4);
-			expect(p.given('charismatic', false, 'tyrannical', true).value).toEqual(0.8);
+			expect(p).toEqual(0.48);
+			expect(p.given('tyrannical', true)).toEqual(0.48);
+			expect(p.given('charismatic', true, 'tyrannical', true)).toEqual(0.4);
+			expect(p.given('charismatic', false, 'tyrannical', true)).toEqual(0.8);
 		});
 		
 	});	

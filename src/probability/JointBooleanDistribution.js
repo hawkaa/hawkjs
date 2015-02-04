@@ -90,16 +90,11 @@ define([
 	JointBooleanDistribution.prototype.probabilityOf = function probabilityOf() {
 		var jointArgs = functionArguments.getArray(arguments);
 		var that = this;
-
-		return {
-			given: function() {
-				var givenArgs = functionArguments.getArray(arguments);
-				return {
-					value: that.get(jointArgs.concat(givenArgs)) / that.get(givenArgs)
-				}
-			},
-			value: that.get(jointArgs) / that.get()
-		};
+		Number.prototype.given = function() {
+			var givenArgs = functionArguments.getArray(arguments);
+			return that.get(jointArgs.concat(givenArgs)) / that.get(givenArgs);
+		}
+		return that.get(jointArgs) / that.get();
 	}
 
 	JointBooleanDistribution.walkAndSum = function(o, list, query) {
