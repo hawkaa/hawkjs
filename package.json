@@ -1,0 +1,11 @@
+{
+  "name": "hawk",
+  "version": "1.0.0",
+  "description": "Hawk utility library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Håkon Åmdal",
+  "license": "ISC"
+}
