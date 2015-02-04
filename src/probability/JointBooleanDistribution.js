@@ -5,6 +5,15 @@ define([
 	Set,
 	functionArguments
 ) {
+
+	var JointBooleanDistributionProbability = function() {
+
+	};
+
+	JointBooleanDistributionProbability.prototype.valueOf = function() {
+		return 42;
+	}
+
 	var JointBooleanDistribution = function() {
 
 		/* define properties */
@@ -78,6 +87,21 @@ define([
 		return JointBooleanDistribution.walkAndSum(this._elements, this._variables, query);
 	};
 
+	JointBooleanDistribution.prototype.probabilityOf = function probabilityOf() {
+		var jointArgs = functionArguments.getArray(arguments);
+		var that = this;
+
+		return {
+			given: function() {
+				var givenArgs = functionArguments.getArray(arguments);
+				return {
+					value: that.get(jointArgs.concat(givenArgs)) / that.get(givenArgs)
+				}
+			},
+			value: that.get(jointArgs) / that.get()
+		};
+	}
+
 	JointBooleanDistribution.walkAndSum = function(o, list, query) {
 		var current = list[0];
 		if (current === undefined) {
@@ -94,6 +118,8 @@ define([
 		}
 
 	};
+
+
 
 
 	return JointBooleanDistribution;
